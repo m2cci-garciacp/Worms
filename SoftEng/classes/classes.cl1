@@ -19,10 +19,15 @@ model Worms
 -- enumerations
 ---------------------------------------------------------------------------
 
-enum Type {
-    q,
-    w,
-    e
+enum weaponType {
+    Gun,
+    Bazooka,
+    Bomb
+}
+
+enum stateOfLife {
+    Alive,
+    Dead
 }
 
 
@@ -30,25 +35,125 @@ enum Type {
 -- classes
 ---------------------------------------------------------------------------
 
-class C1
+class Game
 attributes
-    nom : String
+    gravity : Integer
+    wind : Integer
+end
+
+class Player
+attributes
+    name : String
+    turn : Integer
+    score : Integer
+end
+
+class Object
+attributes
+    life : Integer
+end
+
+class Worm < Object
+attributes
+    state : stateOfLife  
+end
+
+class LandscapeBlock < Object  
+end
+
+class Weapon
+attributes
+    type : weaponType
+    initialSpeed : Integer
+    maxDamage : Integer
+    maxRadius : Integer
+end
+
+class Stock
+attributes
+    number : Integer
+end
+
+class Inventory
+end
+
+class Attack
+attributes
+    angle : Integer
 end
 
 
-class C2 < C1
+class Position
 attributes
-    a : String
-    b : String    
+    x : Integer
+    y : Integer
 end
 
 
+class Damage
+end
+
+class Landscape
+end
+
+class Turn
+end
 
 ---------------------------------------------------------------------------
 -- associations
 ---------------------------------------------------------------------------
 
-association A1 between
-    C1 [*] role x
-    C2 [1] role y
+association HasCharacter between
+    Player [1] role player
+    Worm [0..1] role worm
+end
+
+association Contains between
+    Stock [1] role stock
+    Weapon [1] role weapon
+end
+
+association IsFormedOf between
+    Inventory [1] role inventory
+    Stock [1..*] role stocks
+end
+
+association IsAt between
+    Object [1] role object
+    Position [1] role position
+end
+
+association IsPerformedWith between
+    Attack [1] role attack
+    Weapon [1] role weapon
+end
+
+association Performed between
+    Worm [1] role worm
+    Attack [1] role attackPerformed
+end
+
+association IsCausedOn between
+    Damage [0..*] role damages
+    Object [1..*] role targets
+end
+
+association Has between
+    Worm [1] role worm
+    Inventory [1] role inventory
+end
+
+association Causes between
+    Weapon [1] role weapon
+    Damage [1..*] role damages
+end
+
+association IsBasedIn between
+    Landscape [1] role landscape
+    LandscapeBlock [*] role blocks
+end
+
+association InterferesIn between
+    Game [1] role gameCharacteristic
+    Attack [*] role atttacks
 end

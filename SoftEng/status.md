@@ -1,21 +1,26 @@
-Current status
+# Current status
 =============
 
-Synthesis
+## Synthesis
 --------
-Initilialized SoftIng.
-
-Done
+Preliminary version of Classes done.
+  
+  
+## Done
 ----
-Init classes, objects and Glossaire
-
-
-To complete/improve
+Init Classes, Objects and Glossaries.
+Started Glossaries and Classes.
+  
+  
+## To complete/improve
 ---------------------
 
-
-To Do
+  
+    
+## To Do
 -------
+Start Objects and Scenaries.
+Compare with and polish Classes.
 
 
 

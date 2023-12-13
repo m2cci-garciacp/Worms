@@ -9,9 +9,9 @@ glossary model Worms
 
 
 Game
-    | Game of the game Worms. `Game` starts with a number of players, with the whole life.
+    | Game of the game Worms. `Game` starts with a number of players, with the whole `Life`.
     | A `Game` will flow as a suite of `Turn`s, following the initial order. One-by-one the 
-    | non-`Dead` `Player`s will play a `Turn`. Afterwards, the `Turn` of the next non-`Dead`
+    | `Alive` `Player`s will play a `Turn`. Afterwards, the `Turn` of the next `Alive`
     | `Player` starts. A 'Game' finishes when all or all except one of the players are `Dead`. 
     | A `Game` is characterized by `Gravity` and the `Wind`. 
     // Maybe in the future, the wind changes in every turn.
@@ -19,35 +19,40 @@ Game
 Player
     | Virtual player of the `Game`. It is defined by the name, and at the beggining of the `Game` it is
     | attributed a starting position. The player has a score, that increases playing `Game`s. 
-    | In each `Game` the `Player` recovers the whole lifespawn. Each `Attack` may damage the 
-    | `Player` and therefore, reducing its life. If during the `Game`, the life goes under 0, 
-    | the `Player` is considered `Dead` for the rest of the `Game` and it will not play anymore 
-    | until a new `Game` starts.
-
+    
 Worm
-    | Character of the `Player` during a `Game`. Each character will have a differnet look in 
-    | the visual game.
+    | Character of the `Player` during a `Game`. Each character will have a different look in 
+    | the visual game. As an `Object` it has a `Life`.
+    | At the begiing of the `Game` a `Worm` starts with the whole `Life`. Each `Attack` may 
+    | damage the `Worm` and therefore, reducing its `Life`. If during the `Game`, the `Life` goes under 
+    | 0, the `Worm` is considered `Dead` for the rest of the `Game` and its `Player` will not play 
+    | anymore until a new `Game` starts.
 
 Dead
-    | State of `Player` if a `Game` after the life is equal or under 0. When a `Player` is `Dead`, 
+    | State of `Player` if a `Game` after the `Life` is equal or less than 0. When a `Player` is `Dead`, 
     | it will unable to play for the rest of the `Game`. A new `Game` removes this status for every
     | `Player` in the `Game`.
 
+Alive
+    | State of `Player` if a `Game` when the `Life` is greater than 0. When a `Player` is `Alive`, 
+    | it will able to play until the state is changed to `Dead`. A new `Game` attribute this status 
+    | for every `Player` in the `Game`. 
+
 Turn
-    | Turn in the `Game`. During a `Turn`, only one non-`Dead` `Player` plays: deplace the `Worm` and/or 
+    | Turn in the `Game`. During a `Turn`, only one `Alive` `Player` plays: deplace the `Worm` and/or 
     | perform an `Attack` with a `Weapon` prensent in its `Inventory`. The latter may damage any of the `Player`s.
 
 Attack
     | Action possible during a `Turn`. An `Attack` is performed with a `Weapon`, projected with a
-    | given angle and a given speed from the `Worm` position. The trajectory of the `Attack` is
-    | affected by the `Gravity` and the `Wind`.
+    | given angle and the speed of the `Weapon` from the `Worm` position. The trajectory of the `Attack` is
+    | affected by the `Gravity` and the `Wind`. It may reduce the `Life` of an `Object`.
 
 Weapon
     | Tool to perform an action during the `Turn` of a `Player`. A `Weapon` has a initial speed and a
     | maximum `Damage`.
 
 Damage
-    | Points of life caused to an `Object`.
+    | Points removed from the `Life` of an `Object`.
 
 Wind
     | Simulated wind in the `Game`, which affect all flying/falling `Object`s. This affects only in the x axis.
@@ -66,7 +71,15 @@ Position
     | Position of an `Object` in the `Landscape`.
 
 Landscape
-    | Landscape of the current `Game`, which can be modify by the `Player`s along the `Game`.
+    | Landscape of the current `Game`, which can be modify by the `Player`s along the `Game`. It is formed of 
+    | `LandscapeBlock`s.
+
+LandscapeBlock
+    | Elementary block that forms the `Landscape`.
 
 Object
-    | `Worm` part of `Landscape` or `Weapon`'s projectile.
+    | `Worm`, `LandscapeBlock` or `Weapon`'s projectile.
+
+Life
+    | Quantity that measures the `Life` left of an `Object`. Every `Object`starts with a given Quantity
+    | of `Life and when it arrives or goes below zero, i.e. `Dead, the object is out of the `Game`.
