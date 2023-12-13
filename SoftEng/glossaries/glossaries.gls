@@ -8,15 +8,65 @@
 glossary model Worms
 
 
-Worms
-    | ***
-    | ***
-
-Arme
-    | ***
+Game
+    | Game of the game Worms. `Game` starts with a number of players, with the whole life.
+    | A `Game` will flow as a suite of `Turn`s, following the initial order. One-by-one the 
+    | non-`Dead` `Player`s will play a `Turn`. Afterwards, the `Turn` of the next non-`Dead`
+    | `Player` starts. A 'Game' finishes when all or all except one of the players are `Dead`. 
+    | A `Game` is characterized by `Gravity` and the `Wind`. 
+    // Maybe in the future, the wind changes in every turn.
 
 Player
-    synonyms: Joueur
-    | ***
+    | Virtual player of the `Game`. It is defined by the name, and at the beggining of the `Game` it is
+    | attributed a starting position. The player has a score, that increases playing `Game`s. 
+    | In each `Game` the `Player` recovers the whole lifespawn. Each `Attack` may damage the 
+    | `Player` and therefore, reducing its life. If during the `Game`, the life goes under 0, 
+    | the `Player` is considered `Dead` for the rest of the `Game` and it will not play anymore 
+    | until a new `Game` starts.
 
-.
+Worm
+    | Character of the `Player` during a `Game`. Each character will have a differnet look in 
+    | the visual game.
+
+Dead
+    | State of `Player` if a `Game` after the life is equal or under 0. When a `Player` is `Dead`, 
+    | it will unable to play for the rest of the `Game`. A new `Game` removes this status for every
+    | `Player` in the `Game`.
+
+Turn
+    | Turn in the `Game`. During a `Turn`, only one non-`Dead` `Player` plays: deplace the `Worm` and/or 
+    | perform an `Attack` with a `Weapon` prensent in its `Inventory`. The latter may damage any of the `Player`s.
+
+Attack
+    | Action possible during a `Turn`. An `Attack` is performed with a `Weapon`, projected with a
+    | given angle and a given speed from the `Worm` position. The trajectory of the `Attack` is
+    | affected by the `Gravity` and the `Wind`.
+
+Weapon
+    | Tool to perform an action during the `Turn` of a `Player`. A `Weapon` has a initial speed and a
+    | maximum `Damage`.
+
+Damage
+    | Points of life caused to an `Object`.
+
+Wind
+    | Simulated wind in the `Game`, which affect all flying/falling `Object`s. This affects only in the x axis.
+
+Gravity
+    | Simulated gravity in the `Game`, which affect all flying/falling `Object`s. This affects only in the y axis.
+
+Stock
+    | Number of usage disponibles of a `Weapon` for a `Player` in a `Game`. If zero, the `Weapon` is unavailable, 
+    | removed form `Inventory` and it cannot be used.
+
+Inventory
+    | List of `Weapon`s availables for a `Player` to play.
+
+Position
+    | Position of an `Object` in the `Landscape`.
+
+Landscape
+    | Landscape of the current `Game`, which can be modify by the `Player`s along the `Game`.
+
+Object
+    | `Worm` part of `Landscape` or `Weapon`'s projectile.
