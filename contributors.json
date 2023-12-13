@@ -4,5 +4,11 @@
         "firstname": "Pablo",
         "lastname": "GARCIA CAMPOS",
         "email": "pablo.garcia-campos@etu.univ-grenoble-alpes.fr"
+    },
+    {
+        "login": "m2cci-louisar",
+        "firstname": "Arthur",
+        "lastname": "LOUIS",
+        "email": "Arthur.Louis@etu.univ-grenoble-alpes.fr"
     }
 ]
