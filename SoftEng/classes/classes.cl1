@@ -51,11 +51,17 @@ end
 class Object
 attributes
     life : Integer
+    width : Integer
+    height : Integer
+    x : Integer
+    y : Integer
 end
 
 class Worm < Object
-attributes
-    state : stateOfLife  
+operations
+    moveRight()
+    moveLeft()
+    jump()
 end
 
 class LandscapeBlock < Object  
@@ -82,15 +88,7 @@ attributes
     angle : Integer
 end
 
-
-class Position
-attributes
-    x : Integer
-    y : Integer
-end
-
-
-class Damage
+class Explosion
 end
 
 class Landscape
@@ -118,24 +116,14 @@ association IsFormedOf between
     Stock [1..*] role stocks
 end
 
-association IsAt between
-    Object [1] role object
-    Position [1] role position
-end
-
 association IsPerformedWith between
     Attack [1] role attack
     Weapon [1] role weapon
 end
 
-association Performed between
+association Performes between
     Worm [1] role worm
     Attack [1] role attackPerformed
-end
-
-association IsCausedOn between
-    Damage [0..*] role damages
-    Object [1..*] role targets
 end
 
 association Has between
@@ -143,9 +131,19 @@ association Has between
     Inventory [1] role inventory
 end
 
-association Causes between
-    Weapon [1] role weapon
-    Damage [1..*] role damages
+association Creates between
+    Attack [1] role attack
+    Explosion [1] role explosion
+end
+
+association IsTriggeredBy between
+    Explosion [1] role explosion
+    Object [1..*] role target
+end
+
+association Damages between
+    Explosion [0..*] role inRangeExplosion
+    Object [1..*] role damagedObjects
 end
 
 association IsBasedIn between

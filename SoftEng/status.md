@@ -10,6 +10,7 @@ Preliminary version of Classes done.
 ----
 Init Classes, Objects and Glossaries.
 Started Glossaries and Classes.
+Created Views : Worm, Invetory, Attack and Global
   
   
 ## To complete/improve
@@ -19,6 +20,7 @@ Started Glossaries and Classes.
     
 ## To Do
 -------
+Class Turn?
 Start Objects and Scenaries.
 Compare with and polish Classes.
 
