@@ -1,5 +1,5 @@
 /**
- * Define the object Object.
+ * Define the class Object.
  * An Object is caharacterized by a position and a dimension (width and height).
  * It has also an attribute life, which counts the life points of the Object.
  * Below zero, the Object is not Alive.
