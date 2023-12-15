@@ -1,10 +1,10 @@
+
 /**
  * Create a Worm with moving methods.
  * @author ALS, PGC
  * @version
  */
-
-public class Worm extends Object {
+public class Worm extends Object1 {
     //---------------------------------------------------------
     // Worm's class constants
     //---------------------------------------------------------
@@ -27,8 +27,8 @@ public class Worm extends Object {
      * @param x position along x-axis
      * @param y position along y-axis
      */
-    public Worm(int x, int y) {
-        super(x, y, W_WIDTH, W_HEIGHT);
+    public Worm(int x, int y, int width, int height) {
+        super(x, y, width, height, "worm.png");
     }
 
     /**
