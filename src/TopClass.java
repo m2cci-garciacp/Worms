@@ -31,7 +31,8 @@ public class TopClass implements ActionListener, KeyListener {
 	private boolean gamePlay = false; //false -> game not being played
 	private boolean birdThrust = false; //false -> key has not been pressed to move the bird vertically
 	private boolean birdFired = false; //true -> button pressed before jump completes
-	private boolean released = true; //space bar released; starts as true so first press registers
+	private boolean rightKeyReleased = true; //space bar released; starts as true so first press registers
+	private boolean leftKeyReleased = true; //space bar released; starts as true so first press registers
 	private int birdYTracker = SCREEN_HEIGHT/2 - BIRD_HEIGHT;
 	private Object buildComplete = new Object();
 	
@@ -77,8 +78,7 @@ public class TopClass implements ActionListener, KeyListener {
 	 * Method to construct the JFrame and add the program content
 	 */
 	private void buildFrame() {
-		this.getClass().getResource("worm.png");
-		Image icon = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("worm.png"));
+		Image icon = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("test/worm.png"));
 		
 		f.setContentPane(createContentPane());
         f.setResizable(true);
@@ -120,13 +120,14 @@ public class TopClass implements ActionListener, KeyListener {
 	 * Implementation for action events
 	 */
 	public void actionPerformed(ActionEvent e) {
+		// menu
 		if(e.getSource() == startGame) {
-			//stop the splash screen
+			// initial screen, when clicked
 			loopVar = false;
-			
 			fadeOperation();
 		}
 		else if(e.getSource() == buildComplete) {
+			// when game loaded
 			Thread t = new Thread() {
 				public void run() {
 					loopVar = true;
@@ -139,13 +140,15 @@ public class TopClass implements ActionListener, KeyListener {
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_SPACE && gamePlay == true && released == true){
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT && gamePlay == true && rightKeyReleased == true){
 			//update a boolean that's tested in game loop to move the bird
-			if(birdThrust) { //need this to register the button press and reset the birdYTracker before the jump operation completes
-				birdFired = true;
-			}
-			birdThrust = true;
-			released = false;
+			pgs.getWorm().moveRight(20);
+			rightKeyReleased = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT && gamePlay == true && leftKeyReleased == true){
+			//update a boolean that's tested in game loop to move the bird
+			pgs.getWorm().moveLeft(20);
+			leftKeyReleased = false;
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_B && gamePlay == false) {
 			birdYTracker = SCREEN_HEIGHT/2 - BIRD_HEIGHT; //need to reset the bird's starting height
@@ -158,8 +161,11 @@ public class TopClass implements ActionListener, KeyListener {
 	}
 	
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			released = true;
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			rightKeyReleased = true;
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			leftKeyReleased = true;
 		}
 	}
 	
@@ -261,9 +267,7 @@ public class TopClass implements ActionListener, KeyListener {
 				// update the locations in the objects
 				
 				if(!isSplash) {
-					bird.setX(birdX);
-					bird.setY(birdY);
-					pgs.setBird(bird);
+					pgs.setWorm(bird);
 				}
 				
 				// update the locations in the PlayGameScreen				

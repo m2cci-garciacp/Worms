@@ -5,33 +5,33 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
- * Define the class Object.
- * An Object is caharacterized by a position and a dimension (width and height).
- * It has also an attribute life, which counts the life points of the Object.
- * Below zero, the Object is not Alive.
+ * Define the class GraphicalObject.
+ * An GraphicalObject is caharacterized by a position and a dimension (width and height).
+ * It has also an attribute life, which counts the life points of the GraphicalObject.
+ * Below zero, the GraphicalObject is not Alive.
  *
  * @author ALS, PGC
  * @version
  */
-public class Object1 {
+public class GraphicalObject {
     /**
-     * stocks the position x of the Object
+     * stocks the position x of the GraphicalObject
      */
     protected int x;
     /**
-     * stocks the position y of the Object
+     * stocks the position y of the GraphicalObject
      */
     protected int y;
     /**
-     * stocks the width of the Object
+     * stocks the width of the GraphicalObject
      */
     protected int width;
     /**
-     * stocks the heigth of the Object
+     * stocks the heigth of the GraphicalObject
      */
     protected int heigth;
     /**
-     * points of life left of the Object
+     * points of life left of the GraphicalObject
      */
     protected int life = 100;
     /**
@@ -44,13 +44,13 @@ public class Object1 {
     protected Image image;
 
     // ---------------------------------------------------------
-    // Constructeurs of Object class
+    // Constructeurs of GraphicalObject class
     // ---------------------------------------------------------
     /**
      * Object is initialized with a position and a dimension. The points of life
      * are, by default, 100 and therefore alive.
      */
-    public Object1(int x, int y, int width, int heigth, String imagePath) {
+    public GraphicalObject(int x, int y, int width, int heigth, String imagePath) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -119,7 +119,7 @@ public class Object1 {
     /**
      * Damage caused to the object. Modifies the state alive as needed.
      *
-     * @param dam points of life to remove from the Object.
+     * @param dam points of life to remove from the GraphicalObject.
      */
     public void damage(int dam) {
         life -= dam;
@@ -127,54 +127,54 @@ public class Object1 {
     }
 
     /**
-     * Gives the width of the Object
+     * Gives the width of the GraphicalObject
      *
-     * @return width of the Object
+     * @return width of the GraphicalObject
      */
     public int getWidth() {
         return width;
     }
 
     /**
-     * Gives heigth of the Object
+     * Gives heigth of the GraphicalObject
      *
-     * @return heigth of the Object
+     * @return heigth of the GraphicalObject
      */
     public int getHeigth() {
         return heigth;
     }
 
     /**
-     * Gives the position in the x axis of the Object
+     * Gives the position in the x axis of the GraphicalObject
      *
-     * @return the position in the x axis of the Object
+     * @return the position in the x axis of the GraphicalObject
      */
     public int getX() {
         return x;
     }
 
     /**
-     * Gives the position in the y axis of the Object
+     * Gives the position in the y axis of the GraphicalObject
      *
-     * @return the position in the y axis of the Object
+     * @return the position in the y axis of the GraphicalObject
      */
     public int getY() {
         return y;
     }
 
     /**
-     * Gives the points of life left of the Object
+     * Gives the points of life left of the GraphicalObject
      *
-     * @return the points of life left of the Object
+     * @return the points of life left of the GraphicalObject
      */
     public int getLife() {
         return life;
     }
 
     /**
-     * Gives if the Object is alive.
+     * Gives if the GraphicalObject is alive.
      *
-     * @return if the Object is alive.
+     * @return if the GraphicalObject is alive.
      */
     public boolean isAlive() {
         return alive;
@@ -192,7 +192,7 @@ public class Object1 {
     }
 
     /**
-     * Fix positionin the x axis of the Object.
+     * Fix positionin the x axis of the GraphicalObject.
      *
      * @param x value of the position in the x axis.
      */
@@ -201,7 +201,7 @@ public class Object1 {
     }
 
     /**
-     * Fix positionin the y axis of the Object.
+     * Fix positionin the y axis of the GraphicalObject.
      *
      * @param y value of the position in the y axis.
      */

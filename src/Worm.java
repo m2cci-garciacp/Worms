@@ -4,7 +4,7 @@
  * @author ALS, PGC
  * @version
  */
-public class Worm extends Object1 {
+public class Worm extends GraphicalObject {
     //---------------------------------------------------------
     // Worm's class constants
     //---------------------------------------------------------
@@ -28,7 +28,7 @@ public class Worm extends Object1 {
      * @param y position along y-axis
      */
     public Worm(int x, int y, int width, int height) {
-        super(x, y, width, height, "worm.png");
+        super(x, y, width, height, "test/worm.png");
     }
 
     /**

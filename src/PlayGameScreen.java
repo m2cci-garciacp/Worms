@@ -16,7 +16,7 @@ public class PlayGameScreen extends JPanel {
 	private String message = "Flappy Worm";
 	private Font primaryFont = new Font("Goudy Stout", Font.BOLD, 56), failFont = new Font("Calibri", Font.BOLD, 56);
 	private int messageWidth = 0, scoreWidth = 0;
-	private Worm bird;
+	private Worm worm;
 
 	/**
 	 * Default constructor for the PlayGameScreen class
@@ -49,8 +49,8 @@ public class PlayGameScreen extends JPanel {
 		// 	g.drawImage(tp2.getPipe(), tp2.getX(), tp2.getY(), null);
 		// }
 		
-		if(!isSplash && bird != null) {
-			g.drawImage(bird.getImage(), bird.getX(), bird.getY(), null);
+		if(!isSplash && worm != null) {
+			g.drawImage(worm.getImage(), worm.getX(), worm.getY(), null);
 		}
 		
 		//needed in case the primary font does not exist
@@ -95,11 +95,11 @@ public class PlayGameScreen extends JPanel {
 	// }
 	
 	/**
-	 * Parsing method for PlayGameScreen's global Bird variable
-	 * @param bird The Bird object
+	 * Parsing method for PlayGameScreen's global worm variable
+	 * @param worm The worm object
 	 */
-	public void setBird(Worm bird) {
-		this.bird = bird;
+	public void setWorm(Worm worm) {
+		this.worm = worm;
 	}
 	
 	/**
@@ -109,10 +109,18 @@ public class PlayGameScreen extends JPanel {
 	public void incrementJump() {
 		successfulJumps++;
 	}
-	
+		
+	/**
+	 * Method called to return the worm
+	 * @return the worm
+	 */
+	public Worm getWorm() {
+		return worm;
+	}
+
 	/**
 	 * Method called to return the current jump score
-	 * @return
+	 * @return the score
 	 */
 	public int getScore() {
 		return successfulJumps;

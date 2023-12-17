@@ -1,6 +1,7 @@
 /**
  * Define the class Weapon.
- * A Weapon is caharacterized by the type, the force, the maximum damage and the radius of explosion.
+ * A Weapon is characterized by the type, the force, the maximum damage and the radius of explosion.
+ * The number of bullets is attributed automatically at the initialisation fo the Weapon.
  *
  * @author PGC
  */
@@ -21,6 +22,10 @@ public class Weapon {
      * stocks the type of the Weapon
      */
     private Types type;
+    /**
+     * Bullets of the Weapon
+     */
+    private int bullets;
       
 
     //---------------------------------------------------------
@@ -30,11 +35,36 @@ public class Weapon {
      * Object is initialized with a position and a dimension. The points of life
      * are, by default, 100 and therefore alive.
      */
-    public Weapon (Types type, int force, int maximumDamage, int explosionRadius) {
+    public Weapon (Types type) {
         this.type = type;
-        this.force = force;
-        this.maximumDamage = maximumDamage;
-        this.explosionRadius = explosionRadius;    
+
+        switch (type) {
+            case Gun:    
+            default:
+                loadGun();
+                break;
+        }
+    }
+
+    /**
+     * Gives the bullets left of the Weapon
+     *
+     * @return bullets left of the Weapon
+     */
+    private void loadGun() {
+        force = 20;
+        maximumDamage = 15;
+        explosionRadius = 50;
+        bullets = 100;
+    }
+
+    /**
+     * Gives the bullets left of the Weapon
+     *
+     * @return bullets left of the Weapon
+     */
+    public int getBullets() {
+        return bullets;
     }
 
     /**
@@ -73,16 +103,16 @@ public class Weapon {
         return type;
     }
 
+    /**
+     * types of the Weapon
+     */
+    public enum Types {
+        Gun,
+        Bazooka,
+        Bomb
+        }
+
 
 }
-
-/**
- * types of the Weapon
- */
-enum Types {
-    Gun,
-    Bazooka,
-    Bomb
-    }
 
 
