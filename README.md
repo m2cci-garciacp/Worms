@@ -1,3 +1,3 @@
 TODO
 f
-Arsdftistic creditdsfesfs are addreserzrfsdsed to Team 17.
+Artistic credits are addres to Team 17.
